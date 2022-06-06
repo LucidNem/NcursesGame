@@ -21,7 +21,7 @@ pair <int,int> Player::StartPositions()
     tempy= pick_y();
     tempx= pick_x();
     check=0;
-    
+      
     do
     {
        // if (( map[y][x] != '*' ) && (map[y][x] !='') )
