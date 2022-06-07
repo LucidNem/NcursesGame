@@ -1,6 +1,6 @@
 #include "Malfoy.h"
 
- Malfoy::Malfoy(const vector <string> & map):Player(map)
+ Malfoy::Malfoy(vector <string> & map):Player(map)
  {
     cout<< "Mphke malfoy " <<endl;
  }

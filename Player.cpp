@@ -1,8 +1,12 @@
 #include "Player.h"
 
-Player::Player( const vector <string> & map)
+Player::Player( vector <string> & map)
 {
-    this->map= map;
+    //this->map= map;
+    for(int i=0; i<map.size(); i++)
+    {
+        this->map[i].push_back(map[i]);
+    }
     StartPositions();
     cout << "mphke player" << endl;
 

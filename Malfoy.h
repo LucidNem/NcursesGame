@@ -11,7 +11,7 @@ class Malfoy:public Player
  private:
 
  public:
-    Malfoy(const vector <string> &);
+    Malfoy( vector <string> &);
     ~Malfoy();
 
     pair <int,int> StartPositions();

@@ -11,7 +11,7 @@ class Potter: public Player
  //private:
 
  public:
-    Potter(const vector <string> &);
+    Potter( vector <string> &);
     ~Potter();
 
     pair <int,int> StartPositions();

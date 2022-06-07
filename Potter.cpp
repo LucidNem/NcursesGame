@@ -1,7 +1,7 @@
 #include "Potter.h"
 
 
- Potter::Potter(const vector <string> & map): Player(map)
+ Potter::Potter(vector <string> & map): Player(map)
  {
      cout<<"mphke potter" <<endl;
  }

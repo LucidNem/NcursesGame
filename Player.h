@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <string.h>
+#include <cstring>
 
 using namespace std;
 
@@ -17,7 +17,7 @@ protected:
 
 
  public:
-    Player(const vector <string> &);
+    Player( vector <string> &);
     virtual ~Player();
 
     pair <int,int> StartPositions();
