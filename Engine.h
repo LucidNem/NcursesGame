@@ -7,6 +7,7 @@
 #include <fstream>
 #include <string>
 
+#include "Player.h"
 #include "Potter.h"
 #include "Malfoy.h"
 //#include "Diamond"
