@@ -17,7 +17,7 @@ protected:
 
 
  public:
-    Player( vector <string> &);
+    Player( vector <string> );
     virtual ~Player();
 
     pair <int,int> StartPositions();

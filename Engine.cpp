@@ -17,7 +17,7 @@ Engine::~Engine()
 void Engine::StartGame( char *MapFile)
 {
     InsertMap(MapFile);
-    Player Player(map);
+    Player Player1(map);
         //Potter Potter(map);
     // Malfoy Malfoy(map);
 

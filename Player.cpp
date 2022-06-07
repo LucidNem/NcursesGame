@@ -1,14 +1,15 @@
 #include "Player.h"
 
-Player::Player( vector <string> & map)
+Player::Player( vector <string>  map)
 {
+    cout << "mphke player" << endl;
+
     //this->map= map;
     for(int i=0; i<map.size(); i++)
     {
         this->map[i].push_back(map[i]);
     }
     StartPositions();
-    cout << "mphke player" << endl;
 
 }
 
