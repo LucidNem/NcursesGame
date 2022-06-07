@@ -8,7 +8,7 @@ using namespace std;
 
 class Potter: public Player
 {
- private:
+ //private:
 
  public:
     Potter(const vector <string> &);

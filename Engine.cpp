@@ -17,14 +17,15 @@ Engine::~Engine()
 void Engine::StartGame( char *MapFile)
 {
     InsertMap(MapFile);
-    Potter Potter(map);
-    Malfoy Malfoy(map);
+    Player Player(map);
+        //Potter Potter(map);
+    // Malfoy Malfoy(map);
 
-    pair <int,int> temp= Potter.StartPositions();
-    SetMap(temp.first,temp.second, 'M');
+    // pair <int,int> temp= Potter.StartPositions();
+    // SetMap(temp.first,temp.second, 'M');
 
-    temp= Malfoy.StartPositions();
-    SetMap(temp.first,temp.second, 'L');
+    // temp= Malfoy.StartPositions();
+    // SetMap(temp.first,temp.second, 'L');
 
     initscr();
     noecho();
