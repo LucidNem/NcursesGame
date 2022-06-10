@@ -3,34 +3,47 @@
 #include <string>
 
 
-Engine::Engine()
+Engine::Engine(char * MapFile)
 {
+    InsertMap(MapFile);
+    charMap = new char * [map.size()];
+    for (int i=0; i<map.size(); i++)
+    {
+        charMap[i] = new char [ strlen(map[1].c_str())];
+    }
+    
+    for (int i=0; i<map.size(); i++)
+    {
+        for (int j=0; j< strlen(map[1].c_str()); j++)
+        {
+            charMap[i][j]= map[i][j];
+        }
+    }
+
 
 }
 
 
 Engine::~Engine()
 {
-    
+    for (int i=0; i<map.size(); i++)
+    {
+        delete [] charMap[i];
+    }
+    delete [] charMap;
 }
 
-void Engine::StartGame( char *MapFile)
+void Engine::StartGame( )
 {
-    InsertMap(MapFile);
-    
     Potter Potter(map);
+    SetMap(Potter.Gety(),Potter.Getx(), 'M');
     Malfoy Malfoy(map);
-
-    //pair <int,int> temp= Potter.StartPositions();
-    SetMap(Potter.Gety(),Potter.Getx(), 'K');
-
-    //temp= Malfoy.StartPositions();
     SetMap(Malfoy.Gety(),Malfoy.Getx(), 'L');
 
-    for(int i=0; i< map.size(); i++)
-    {
-        cout << map[i] << endl;
-    }
+    // for(int i=0; i< map.size(); i++)
+    // {
+    //     cout << map[i] << endl;
+    // }
 
     initscr();
     noecho();
@@ -44,9 +57,8 @@ void Engine::StartGame( char *MapFile)
     PrintwMap();
     refresh();
     getch();
-    //GetMove();
     
-
+  
    
 
     endwin();
@@ -57,6 +69,7 @@ void Engine::StartGame( char *MapFile)
 
 void Engine::SetMap(int y,int x, char letter)
 {
+    charMap[y][x]=letter;
     map[y][x]=letter;
 }
 
@@ -113,7 +126,13 @@ void Engine::PrintwMap()
 {
     for (int i=0; i< map.size(); i++)
     {
-        printw("%s\n",map[i].c_str());
+        for (int j=0; j< strlen(map[1].c_str()) ; j++)
+        {
+            printw("%c", charMap[i][j]);
+        }
+        printw("\n");
+
+       //printw("%s\n",map[i].c_str());
     }
 }
     

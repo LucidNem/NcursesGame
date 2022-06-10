@@ -14,8 +14,8 @@ int main (int argc, char **argv)
 {
     srand( (unsigned) time(0));
 
-    Engine Engine;
-    Engine.StartGame(argv[1]);
+    Engine Engine(argv[1]);
+    Engine.StartGame();
     
 
     return 0;

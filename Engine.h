@@ -18,12 +18,13 @@ class Engine
 {
 private:
     vector <string> map;
+    char ** charMap;
 
 public:
-    Engine();
+    Engine(char *);
     ~Engine();
 
-    void StartGame(char *);
+    void StartGame();
     void InsertMap(char *);
     const vector <string> & GetMap() const;
 
