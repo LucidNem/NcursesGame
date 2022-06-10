@@ -7,6 +7,7 @@
 #include "Engine.h"
 #include "Potter.h"
 #include "Malfoy.h"
+#include "Diamond.h"
 
 using namespace std;
 

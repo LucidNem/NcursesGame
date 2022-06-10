@@ -1,5 +1,8 @@
 #include "Player.h"
 #include <string>
+#include <cstring>
+#define ESCAPE 27
+#define SPACE 32
 
 Player::Player( vector <string>  xmap)
 {
@@ -24,10 +27,8 @@ pair <int,int> Player::StartPositions()
       
     do
     {
-        //if (map[tempy][tempx] ==' ') 
         if (map[tempy][tempx] != '*' && map[tempy][tempx] != 'M' && map[tempy][tempx] != 'L' && map[tempy][tempx] != 'D')
         {
-            //map[tempy][tempx] = ' ';
             check =1;
             this->y=tempy;
             this->x=tempx;
@@ -85,17 +86,81 @@ void Player::Setx(int x)
     this->x = x;
 }
 
+void Player::UpdateMapFromEngine(vector <string> xmap)
+{
+    this->map=xmap;
+}
+
 
 void Player::GetMove()
 {
 
 }
 
-bool Player::CheckMove(int x, int y)
+bool Player::CheckMove(int y,int x)
 {   
+    if (map[y][x] != '*')
+    {
+        return true;
+    }
+    return false;
+}
+
+
+bool Player::MoveUp()
+{
+    int tempy=y-1;
+    int tempx=x;
+    if (CheckMove(tempy, tempx)==true)
+    {
+        this->y = tempy;
+        return true;
+    }
+    return false;
+}
+
+bool Player::MoveDown()
+{
+    int tempy=y+1;
+    int tempx=x;
+    if (CheckMove(tempy, tempx)==true)
+    {
+        this->y = tempy;
+        return true;
+    }
+    return false;
+}
+
+bool Player::MoveRight()
+{
+    int tempy=y;
+    int tempx=x+1;
+    if (CheckMove(tempy, tempx)==true)
+    {
+        this->x = tempx;
+        return true;
+    }
+    return false;
+}
+
+bool Player::MoveLeft()
+{
+    int tempy=y;
+    int tempx=x-1;
+    if (CheckMove(tempy, tempx)==true)
+    {
+        this->x = tempx;
+        return true;
+    }
+    return false;
+}
+
+bool Player::StandStill()
+{
     return true;
 }
-void Player::DoMove()
-{
 
+bool Player::ExitGame()
+{
+   return true;
 }

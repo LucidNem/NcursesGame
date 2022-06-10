@@ -13,8 +13,8 @@ class Potter: public Player
  public:
     Potter( vector <string> &);
     ~Potter();
-
-    pair <int,int> StartPositions();
+    int GetMove();
+    //pair <int,int> StartPositions();
 
 };
 

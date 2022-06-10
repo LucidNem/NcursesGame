@@ -10,7 +10,7 @@
 #include "Player.h"
 #include "Potter.h"
 #include "Malfoy.h"
-//#include "Diamond"
+#include "Diamond.h"
 
 using namespace std;
 
@@ -18,6 +18,7 @@ class Engine
 {
 private:
     vector <string> map;
+    vector <string> StartMap;
     char ** charMap;
 
 public:
@@ -32,16 +33,10 @@ public:
     int pick_x();
 
     void SetMap(int,int, char);
+    bool CheckWin(Player &, Diamond &);
 
-    int GetMove();
     void PrintwMap();
-    bool MoveUp();
-    bool MoveDown();
-    bool MoveRight();
-    bool MoveLeft();
-    bool StandStill();
-    bool ExitGame();
-    bool CheckMoveValid();
+    bool CheckMove(int,int);
 
 };
 

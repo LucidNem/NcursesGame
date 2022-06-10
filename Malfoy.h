@@ -6,13 +6,14 @@
 
 using namespace std;
 
-class Malfoy:public Player
+class Malfoy: public Player
 {
  private:
 
  public:
     Malfoy( vector <string> &);
     ~Malfoy();
+    int GetMove();
 
     pair <int,int> StartPositions();
 

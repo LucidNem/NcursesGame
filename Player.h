@@ -29,14 +29,22 @@ protected:
     int pick_y();
     int pick_x();
 
-    void GetMove();
-    bool CheckMove(int, int);
-    void DoMove();
-
     int Gety() const;
     const int Getx() const;
     void Sety(int);
     void Setx(int);
+
+    void GetMove();
+    bool CheckMove(int,int);
+
+    bool MoveUp();
+    bool MoveDown();
+    bool MoveRight();
+    bool MoveLeft();
+    bool StandStill();
+    bool ExitGame();
+
+    void UpdateMapFromEngine(vector <string>);
 
 };
 

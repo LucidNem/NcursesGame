@@ -6,6 +6,7 @@
 Engine::Engine(char * MapFile)
 {
     InsertMap(MapFile);
+    StartMap=map;
     charMap = new char * [map.size()];
     for (int i=0; i<map.size(); i++)
     {
@@ -19,10 +20,7 @@ Engine::Engine(char * MapFile)
             charMap[i][j]= map[i][j];
         }
     }
-
-
 }
-
 
 Engine::~Engine()
 {
@@ -33,17 +31,16 @@ Engine::~Engine()
     delete [] charMap;
 }
 
+
+
 void Engine::StartGame( )
 {
+    Diamond Diamond(map);
+    SetMap(Diamond.Gety(),Diamond.Getx(), 'D');
     Potter Potter(map);
     SetMap(Potter.Gety(),Potter.Getx(), 'M');
     Malfoy Malfoy(map);
     SetMap(Malfoy.Gety(),Malfoy.Getx(), 'L');
-
-    // for(int i=0; i< map.size(); i++)
-    // {
-    //     cout << map[i] << endl;
-    // }
 
     initscr();
     noecho();
@@ -56,16 +53,47 @@ void Engine::StartGame( )
 
     PrintwMap();
     refresh();
-    getch();
+
+    bool check=false;
+    do
+    {
+        clear();
+        PrintwMap();
+        refresh();
+        SetMap(Potter.Gety(),Potter.Getx(), ' ');
+        Potter.GetMove();
+        SetMap(Potter.Gety(),Potter.Getx(), 'M');
+        check = CheckWin(Potter,Diamond);
+        if (check==true)
+        {
+            break;
+        }
+
+        SetMap(Malfoy.Gety(),Malfoy.Getx(), ' ');
+        Malfoy.GetMove();
+        SetMap(Malfoy.Gety(),Malfoy.Getx(), 'L');
+        check = CheckWin(Malfoy,Diamond);
+
+    } while (check==false);
     
+
+
   
-   
 
     endwin();
-    //cout << strlen(map[1].c_str());
 
 }
 
+
+bool Engine::CheckWin(Player & Player, Diamond &Diamond)
+{
+    if ( Player.Gety() == Diamond.Gety()  &&  Player.Getx()==Diamond.Getx() )
+    {
+        return true;
+    }
+    return false;
+}
+    
 
 void Engine::SetMap(int y,int x, char letter)
 {
@@ -93,35 +121,7 @@ const vector <string> & Engine::GetMap() const
 {
     return map;
 }
-/*
- int Engine::GetMove()
-{
-    int choice = wgetch(stdscr);
 
-    switch (choice)
-    {
-        case KEY_UP:
-            MoveUp();
-            break;
-        case KEY_DOWN:
-            MoveDown();
-            break;
-        case KEY_RIGHT:
-            MoveRight();
-            break;
-        case KEY_LEFT:
-            MoveLeft();
-            break;
-        case SPACE:
-            StandStill();
-            break;
-        case ESCAPE():
-            ExitGame();
-            break;
-    }
-    return choice;
-}
-*/
 void Engine::PrintwMap()
 {
     for (int i=0; i< map.size(); i++)
@@ -136,46 +136,6 @@ void Engine::PrintwMap()
     }
 }
     
-
-
-
-// bool Engine::MoveUp()
-// {
-
-//     //if ( CheckMoveValid()==true)
-//     {
-
-//     }
-
-// }
-// bool Engine::MoveDown()
-// {
-
-// }
-// bool Engine::MoveRight()
-// {
-
-// }
-// bool Engine::MoveLeft()
-// {
-    
-// }
-// bool Engine::StandStill()
-// {
-
-// }
-// bool Engine::ExitGame()
-// {
-
-// }
-
-// bool Engine::CheckMoveValid()
-// {
-
-// }
-
-
-
 int Engine::pick_y()
 {
     int y;
@@ -190,4 +150,10 @@ int Engine::pick_x()
      int chars_per_line= strlen(map[1].c_str());
     x = (rand() % chars_per_line ) ;
     return x;
+}
+
+
+bool Engine::CheckMove(int x, int y)
+{   
+    return true;
 }

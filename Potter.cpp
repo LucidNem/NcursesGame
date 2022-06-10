@@ -1,5 +1,12 @@
 #include "Potter.h"
 
+#define ESCAPE 27
+#define SPACE 32
+#define KEY_UP 65
+#define KEY_DOWN 66
+#define KEY_RIGHT 67
+#define KEY_LEFT 68
+
 
  Potter::Potter(vector <string> & map): Player(map)
  {
@@ -10,33 +17,44 @@ Potter::~Potter()
 
 }
 
-// pair <int,int> Potter::StartPositions()
-// { 
-//    int i,tempy,tempx,check;
-//     srand( (unsigned) time(0));
-   
-//     tempy= pick_y();
-//     tempx= pick_x();
-//     check=0;
-      
-//     do
-//     {
-//         //if (map[tempy][tempx] ==' ') 
-//         if (map[tempy][tempx] != '*' && map[tempy][tempx]!='M' && map[tempy][tempx] != 'L' && map[tempy][tempx] != 'D')
-//         {
-//             //map[tempy][tempx] = 'M';
-//             check =1;
-//             this->y=tempy;
-//             this->x=tempx;
-//         }
-//         else
-//         {
-//             tempy= pick_y();
-//             tempx= pick_x();
-//         }
-//     }
-//     while (check==0);
+int Potter::GetMove()
+{
+    int choice;
+    bool check=false;
+    do
+    {
+        //choice = wgetch(stdscr);
+        choice = getch();
 
-//     pair <int,int> cords (y,x);
-//     return cords;
-// }
+        switch (choice)
+        {
+        case KEY_UP:
+            check=MoveUp();
+            break;
+        case KEY_DOWN:
+            check=MoveDown();
+            break;
+        case KEY_RIGHT:
+           check=MoveRight();
+            break;
+        case KEY_LEFT:
+            check=MoveLeft();
+            break;
+        case SPACE:
+            check= StandStill();
+            break;
+        case ESCAPE:
+            ExitGame();
+            check=true;
+            break;
+        }
+        
+    } while (check== false);
+    
+    
+
+   
+    return choice;
+}
+
+
