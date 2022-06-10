@@ -5,6 +5,11 @@
 #include <vector>
 #include <string>
 #include <cstring>
+#include <time.h>
+#include <curses.h>
+#include <stdio.h>      
+#include <stdlib.h>  
+
 
 using namespace std;
 

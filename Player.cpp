@@ -1,16 +1,10 @@
 #include "Player.h"
+#include <string>
 
-Player::Player( vector <string>  map)
+Player::Player( vector <string>  xmap)
 {
-    cout << "mphke player" << endl;
-
-    //this->map= map;
-    for(int i=0; i<map.size(); i++)
-    {
-        this->map[i].push_back(map[i]);
-    }
+    this->map= xmap;
     StartPositions();
-
 }
 
 
@@ -22,6 +16,7 @@ Player::~Player()
 pair <int,int> Player::StartPositions()
 { 
     int i,tempy,tempx,check;
+    srand( (unsigned) time(0));
    
     tempy= pick_y();
     tempx= pick_x();
@@ -29,18 +24,18 @@ pair <int,int> Player::StartPositions()
       
     do
     {
-       // if (( map[y][x] != '*' ) && (map[y][x] !='') )
-        if (map[y][x]== ' ')
+        //if (map[tempy][tempx] ==' ') 
+        if (map[tempy][tempx] != '*' && map[tempy][tempx] != 'M' && map[tempy][tempx] != 'L' && map[tempy][tempx] != 'D')
         {
-            map[y][x]= 'M';
+            //map[tempy][tempx] = ' ';
             check =1;
             this->y=tempy;
             this->x=tempx;
         }
         else
         {
-            this->y= pick_y();
-            this->x= pick_x();
+            tempy= pick_y();
+            tempx= pick_x();
         }
     }
     while (check==0);
@@ -53,6 +48,7 @@ pair <int,int> Player::StartPositions()
 
 int Player::pick_y()
 {
+    srand( (unsigned) time(0));
     int y;
     y = (rand() % map.size()) ;
     return y;
@@ -61,6 +57,7 @@ int Player::pick_y()
 
 int Player::pick_x()
 {
+    srand( (unsigned) time(0));
     int x;
      int chars_per_line= strlen(map[1].c_str());
     x = (rand() % chars_per_line ) ;

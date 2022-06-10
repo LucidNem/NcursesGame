@@ -5,7 +5,7 @@
 
 Engine::Engine()
 {
-    cout<<"Constructing Engine"<<endl;
+
 }
 
 
@@ -17,15 +17,20 @@ Engine::~Engine()
 void Engine::StartGame( char *MapFile)
 {
     InsertMap(MapFile);
-    Player Player1(map);
-        //Potter Potter(map);
-    // Malfoy Malfoy(map);
+    
+    Potter Potter(map);
+    Malfoy Malfoy(map);
 
-    // pair <int,int> temp= Potter.StartPositions();
-    // SetMap(temp.first,temp.second, 'M');
+    //pair <int,int> temp= Potter.StartPositions();
+    SetMap(Potter.Gety(),Potter.Getx(), 'K');
 
-    // temp= Malfoy.StartPositions();
-    // SetMap(temp.first,temp.second, 'L');
+    //temp= Malfoy.StartPositions();
+    SetMap(Malfoy.Gety(),Malfoy.Getx(), 'L');
+
+    for(int i=0; i< map.size(); i++)
+    {
+        cout << map[i] << endl;
+    }
 
     initscr();
     noecho();
@@ -49,19 +54,11 @@ void Engine::StartGame( char *MapFile)
 
 }
 
-void Engine::StartPositions()
-{
-
-}
 
 void Engine::SetMap(int y,int x, char letter)
 {
     map[y][x]=letter;
 }
-
-
-
-
 
 void Engine::InsertMap(char * MapFile)
 {

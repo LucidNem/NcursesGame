@@ -34,7 +34,6 @@ public:
 
     int GetMove();
     void PrintwMap();
-    void StartPositions();
     bool MoveUp();
     bool MoveDown();
     bool MoveRight();
