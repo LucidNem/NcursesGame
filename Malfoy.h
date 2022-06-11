@@ -19,6 +19,7 @@ class Malfoy: public Player
     Malfoy( vector <string> &);
     ~Malfoy();
     int GetMove();
+    void PassNums(int);
 
     pair <int,int> StartPositions();
     void FindRoute(int, int);

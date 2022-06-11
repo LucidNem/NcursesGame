@@ -39,11 +39,6 @@ int Malfoy::GetMove()
     int choice=1;
     bool check=false;
 
-   
-    
-    
-   
-
     for (int i=0;i<map.size(); i++)
     {
         for (int j=0; j<strlen(map[0].c_str()); j++)
@@ -67,7 +62,7 @@ int Malfoy::GetMove()
      FindRouteMap[this->y][this->x]=0;
 
 
-    int i=1;
+    int i=0;
     int j=2;
  
     int tempy,tempx;
@@ -76,18 +71,23 @@ int Malfoy::GetMove()
     FindRoute(tempy,tempx); // εδώ στέλνω το 0 δηλαδή τη θέση του Malfoy
     do
     {
-        tempy= tempy-i;
-        FindRoute(tempy,tempx);
-        tempy= tempy+j;
-        FindRoute(tempy,tempx);
-        tempx= tempx-i;
-        FindRoute(tempy,tempx);
-        tempx= tempx+j;
-        FindRoute(tempy,tempx);
+        // tempy= tempy-i;
+        // FindRoute(tempy,tempx);
+        // tempy= tempy+j;
+        // FindRoute(tempy,tempx);
+        // tempy=tempy-j+i;
 
-        j=j+1;
-        i=i+1;
+        // tempx= tempx-i;
+        // FindRoute(tempy,tempx);
+        // tempx= tempx+j;
+        // FindRoute(tempy,tempx);
+        // tempx=tempx-j+i;
+
+        // j=j+1;
+         
     
+        PassNums(i);
+        i=i+1;
        
     } while ( FindRouteMap[Dy-1][Dx] < 0 && FindRouteMap[Dy+1][Dx] < 0 && FindRouteMap[Dy][Dx-1] <0 && FindRouteMap[Dy][Dx+1] < 0 );
 
@@ -100,12 +100,25 @@ int Malfoy::GetMove()
         }
         cout << endl;
     }
-    
+
     
     return choice;
 }
 
+void Malfoy::PassNums(int given)
+{
+    for (int i=0; i<map.size(); i++)
+    {
+        for (int j=0; j < strlen(map[0].c_str()); j++)
+        {
+            if (FindRouteMap[i][j]==given )
+            {
+                FindRoute(i,j);
 
+            }
+        }
+    }
+}
 
 
 
