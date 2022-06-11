@@ -2,7 +2,6 @@
 #include <string.h>
 #include <string>
 
-
 Engine::Engine(char * MapFile)
 {
     InsertMap(MapFile);
@@ -45,12 +44,10 @@ void Engine::StartGame( )
     initscr();
     noecho();
     cbreak();
-
     printw("\n\n\n\n WELCOME \n\n\n PRESS ANY KEY TO CONTINUE\n\n");
     refresh();
     getch();
     clear();
-
     PrintwMap();
     refresh();
 
@@ -70,16 +67,13 @@ void Engine::StartGame( )
             break;
         }
 
-         SetMap(Malfoy.Gety(),Malfoy.Getx(), ' ');
-         Malfoy.GetMove();
-         SetMap(Malfoy.Gety(),Malfoy.Getx(), 'L');
-         check = CheckWin(Malfoy,Diamond);
+        SetMap(Malfoy.Gety(),Malfoy.Getx(), ' ');
+        Malfoy.GetMove();
+        SetMap(Malfoy.Gety(),Malfoy.Getx(), 'L');
+        check = CheckWin(Malfoy,Diamond);
 
     } while (check==false);
     
-    
-
-  
 
     endwin();
 

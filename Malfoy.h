@@ -10,9 +10,10 @@ using namespace std;
 class Malfoy: public Player
 {
  private:
-     vector <vector <int> > FindRouteMap;
+     //vector <vector <int> > FindRouteMap;
      int Dy;
      int Dx;
+     int ** FindRouteMap;
 
  public:
     Malfoy( vector <string> &);
@@ -21,6 +22,7 @@ class Malfoy: public Player
 
     pair <int,int> StartPositions();
     void FindRoute(int, int);
+
 
 };
 
