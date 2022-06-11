@@ -61,6 +61,7 @@ void Engine::StartGame( )
         PrintwMap();
         refresh();
         SetMap(Potter.Gety(),Potter.Getx(), ' ');
+        SetMap(Malfoy.Gety(),Malfoy.Getx(), 'L');
         Potter.GetMove();
         SetMap(Potter.Gety(),Potter.Getx(), 'M');
         check = CheckWin(Potter,Diamond);
@@ -69,10 +70,10 @@ void Engine::StartGame( )
             break;
         }
 
-        // SetMap(Malfoy.Gety(),Malfoy.Getx(), ' ');
-        // Malfoy.GetMove();
-        // SetMap(Malfoy.Gety(),Malfoy.Getx(), 'L');
-        // check = CheckWin(Malfoy,Diamond);
+         SetMap(Malfoy.Gety(),Malfoy.Getx(), ' ');
+         Malfoy.GetMove();
+         SetMap(Malfoy.Gety(),Malfoy.Getx(), 'L');
+         check = CheckWin(Malfoy,Diamond);
 
     } while (check==false);
     

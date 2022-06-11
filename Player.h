@@ -19,6 +19,7 @@ protected:
     int y;
     int x;
     vector <string> map;
+    
 
 
  public:

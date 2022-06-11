@@ -3,12 +3,16 @@
 
 #include <iostream>
 #include "Player.h"
+#include "Diamond.h"
 
 using namespace std;
 
 class Malfoy: public Player
 {
  private:
+     vector <vector <int> > FindRouteMap;
+     int Dy;
+     int Dx;
 
  public:
     Malfoy( vector <string> &);
@@ -16,6 +20,7 @@ class Malfoy: public Player
     int GetMove();
 
     pair <int,int> StartPositions();
+    void FindRoute(int, int);
 
 };
 
