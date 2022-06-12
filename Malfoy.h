@@ -13,6 +13,8 @@ class Malfoy: public Player
      //vector <vector <int> > FindRouteMap;
      int Dy;
      int Dx;
+     int desty;
+     int destx;
      int ** FindRouteMap;
 
  public:
@@ -20,6 +22,7 @@ class Malfoy: public Player
     ~Malfoy();
     int GetMove();
     void PassNums(int);
+    void FinalDestination();
 
     pair <int,int> StartPositions();
     void FindRoute(int, int);

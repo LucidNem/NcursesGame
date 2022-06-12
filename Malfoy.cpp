@@ -55,55 +55,97 @@ int Malfoy::GetMove()
             {
                 Dy=i;
                 Dx=j;   
-                FindRouteMap[i][j]=-3;
+                FindRouteMap[i][j] = -3;
             }
         }
     }
-     FindRouteMap[this->y][this->x]=0;
 
+    FindRouteMap[this->y][this->x]=0;
 
-    int i=0;
-    int j=2;
- 
-    int tempy,tempx;
-    tempy= this->y;
-    tempx= this->x;
-    FindRoute(tempy,tempx); // εδώ στέλνω το 0 δηλαδή τη θέση του Malfoy
+    int counter=1;
+    
+    FindRoute(this->y,this->x); // εδώ στέλνω το 0 δηλαδή τη θέση του Malfoy
     do
     {
-        // tempy= tempy-i;
-        // FindRoute(tempy,tempx);
-        // tempy= tempy+j;
-        // FindRoute(tempy,tempx);
-        // tempy=tempy-j+i;
-
-        // tempx= tempx-i;
-        // FindRoute(tempy,tempx);
-        // tempx= tempx+j;
-        // FindRoute(tempy,tempx);
-        // tempx=tempx-j+i;
-
-        // j=j+1;
-         
-    
-        PassNums(i);
-        i=i+1;
+        PassNums(counter);
+        counter=counter+1;
        
-    } while ( FindRouteMap[Dy-1][Dx] < 0 && FindRouteMap[Dy+1][Dx] < 0 && FindRouteMap[Dy][Dx-1] <0 && FindRouteMap[Dy][Dx+1] < 0 );
+    } while ( FindRouteMap[Dy-1][Dx] < 0 && FindRouteMap[Dy+1][Dx] < 0 && FindRouteMap[Dy][Dx-1] < 0 && FindRouteMap[Dy][Dx+1] < 0 );
 
+    desty= Dy;
+    destx =Dx;
 
+    if (FindRouteMap[desty-1][destx]>0)
+    {
+        desty=Dy-1;
+        destx=Dx;
+
+    }
+    else if (FindRouteMap[desty+1][destx] >0)
+    {
+        desty=Dy+1;
+        destx=Dx;
+    }
+    else if (FindRouteMap[desty][destx-1] >0)
+    {
+        desty=Dy;
+        destx=Dx-1;
+    }
+    else if (FindRouteMap[desty][destx+1] >0)
+    {
+        desty=Dy;
+        destx=Dx+1;
+    }
+    
     for (int i=0; i<map.size(); i++)
     {
-        for (int j=0; j<map[0].size(); j++)
+        for (int j=0; j<map[i].size(); j++)
         {
-            cout<< FindRouteMap[i][j];
+            printw("%d", FindRouteMap[i][j]);
         }
-        cout << endl;
+        printw("\n");
     }
+    refresh();
 
+    do
+    {
+        FinalDestination();
+        //cout <<" vriskei to route" << endl;
+    } while (FindRouteMap[desty][destx]!=1);
+    
+    this->y=desty;
+    this->x=destx;
     
     return choice;
 }
+
+void Malfoy::FinalDestination ()
+{
+    if (FindRouteMap[desty-1][destx] == FindRouteMap[desty][destx] -1 )
+    {
+        desty=Dy-1;
+        destx=Dx;
+
+    }
+    else if (FindRouteMap[desty+1][destx] == FindRouteMap[desty][destx]-1)
+    {
+        desty=Dy+1;
+        destx=Dx;
+    }
+    else if (FindRouteMap[desty][destx-1] ==FindRouteMap[desty][destx] - 1)
+    {
+        desty=Dy;
+        destx=Dx-1;
+    }
+    else if (FindRouteMap[desty][destx+1] == FindRouteMap[desty][destx] -1)
+    {
+        desty=Dy;
+        destx=Dx+1;
+    }
+}
+
+
+
 
 void Malfoy::PassNums(int given)
 {
