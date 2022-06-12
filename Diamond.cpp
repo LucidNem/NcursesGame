@@ -1,5 +1,4 @@
 #include "Diamond.h"
-
 #include <cstring>
 
  Diamond::Diamond(vector <string> xmap)
@@ -70,7 +69,6 @@ void Diamond::ChangePos()
     }
 }
 
-
 int Diamond::pick_y()
 {
     srand( (unsigned) time(0));
@@ -79,7 +77,6 @@ int Diamond::pick_y()
     return y;
 }   
    
-
 int Diamond::pick_x()
 {
     srand( (unsigned) time(0));

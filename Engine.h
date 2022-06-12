@@ -6,7 +6,6 @@
 #include <curses.h>
 #include <fstream>
 #include <string>
-
 #include "Player.h"
 #include "Potter.h"
 #include "Malfoy.h"
@@ -20,25 +19,19 @@ private:
     vector <string> map;
     vector <string> StartMap;
     char ** charMap;
-
 public:
     Engine(char *);
     ~Engine();
-
     void StartGame();
     void InsertMap(char *);
     const vector <string> & GetMap() const;
-
     int pick_y();
     int pick_x();
-
     void SetMap(int,int, char);
+    void PrintwMap();
+    void PrintPlayers(Potter &, Malfoy &, Diamond &);
+    bool CheckMove(int,int);
     bool CheckWinPotter(Player &, Diamond &);
     bool CheckWinMalfoy(Player &, Diamond &);
-
-    void PrintwMap();
-    bool CheckMove(int,int);
-
 };
-
 #endif

@@ -1,9 +1,8 @@
 #include "Malfoy.h"
 #include "Diamond.h"
-
+#include <iostream>
 #define ESCAPE 27
 #define SPACE 32
-#include <iostream>
 
 using namespace std;
 
@@ -29,10 +28,10 @@ using namespace std;
             {
                 FindRouteMap[i][j]= 0;
             }
-            
         }
     }
  }
+
 Malfoy::~Malfoy()
 {
     for (int i=0; i<map.size(); i++)
@@ -46,7 +45,6 @@ Malfoy::~Malfoy()
 
 int Malfoy::GetMove()
 {
-
      for (int i=0; i<map.size(); i++)
     {
         for (int j=0; j< strlen(map[1].c_str()); j++)
@@ -64,7 +62,7 @@ int Malfoy::GetMove()
             
         }
     }
-    
+
     int choice=1;
     int counter=2;
     FindRoute(Dy,Dx);
@@ -97,9 +95,7 @@ int Malfoy::GetMove()
     }
     
      return choice;
-
 }
-
 
 
 void Malfoy::PassNums(int given)
@@ -146,9 +142,6 @@ void Malfoy::PassNums(int given)
             {
                 FindRouteMap[y][x+1] =FindRouteMap[y][x]+1;
             }
-           
         }
-    }
-   
-        
+    } 
 }

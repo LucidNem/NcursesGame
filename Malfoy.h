@@ -12,19 +12,13 @@ class Malfoy: public Player
  private:
      int Dy;
      int Dx;
-     //int ** FindRouteMap;
-
+     int ** FindRouteMap;
  public:
     Malfoy( vector <string> &);
     ~Malfoy();
     int GetMove();
-    pair <int,int> StartPositions();
     void PassNums(int);
     void FinalDestination();
     void FindRoute(int, int);
-
-    int ** FindRouteMap;
-
 };
-
 #endif

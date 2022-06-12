@@ -31,7 +31,6 @@ Engine::~Engine()
 }
 
 
-
 void Engine::StartGame( )
 {
     Diamond Diamond(map);
@@ -47,18 +46,18 @@ void Engine::StartGame( )
     printw("\n\n\n\n WELCOME \n\n\n PRESS ANY KEY TO CONTINUE\n\n");
     refresh();
     getch();
-    // clear();
-    // PrintwMap();
-    // refresh();
+    clear();
+    PrintwMap();
+    refresh();
 
     bool check=false;
     do
     {
-        clear();
-        PrintwMap();
         refresh();
+        PrintwMap();
+        PrintPlayers(Potter,Malfoy,Diamond);  
+        refresh(); 
         
-    
         SetMap(Potter.Gety(),Potter.Getx(), ' ');
         SetMap(Malfoy.Gety(),Malfoy.Getx(), 'L');
         Potter.GetMove();
@@ -81,7 +80,6 @@ void Engine::StartGame( )
             SetMap(Diamond.Gety(),Diamond.Getx(), 'D');
         }
 
-        
     } while (check==false);
 
     clear();
@@ -97,11 +95,10 @@ void Engine::StartGame( )
     }
     
     refresh();
+    
     getch();
-
+    getch();
     endwin();
-
-
 }
 
 
@@ -158,47 +155,67 @@ void Engine::PrintwMap()
     {
         for ( j=0; j< strlen(map[1].c_str()) ; j++)
         {
-            if (map[i][j] == '.')
-            {
-               mvwprintw(stdscr,i,j," ");
-                //printw("%c", charMap[i][j]);
-            }
-            else if (map[i][j]== '*')
+            if (map[i][j]== '*')
             {
                 wattron(stdscr,COLOR_PAIR(3));
                 mvwprintw(stdscr,i,j," ");
                 wattroff (stdscr,COLOR_PAIR(3));
-
             }
-            else if (map[i][j] == 'D')
+            else //if (map[i][j] == '.')
             {
-                wattron(stdscr,COLOR_PAIR(4));
-                mvwprintw(stdscr,i,j,"$");
-                wattroff (stdscr,COLOR_PAIR(4));
-
+               mvwprintw(stdscr,i,j," ");
             }
-            else if (map[i][j]== 'M')
-            {
-                wattron(stdscr,COLOR_PAIR(1));
-                mvwprintw(stdscr,i,j,"M");
-                wattroff (stdscr,COLOR_PAIR(1));
-            }
-            else if (map[i][j]=='L')
-            {
-                wattron(stdscr,COLOR_PAIR(2));
-                mvwprintw(stdscr,i,j,"L");
-                wattroff (stdscr,COLOR_PAIR(2));
-            }
+            // else if (map[i][j] == 'D')
+            // {
+            //     wattron(stdscr,COLOR_PAIR(4));
+            //     mvwprintw(stdscr,i,j,"$");
+            //     wattroff (stdscr,COLOR_PAIR(4));
+            // }
+            // else if (map[i][j]== 'M')
+            // {
+            //     wattron(stdscr,COLOR_PAIR(1));
+            //     mvwprintw(stdscr,i,j,"M");
+            //     wattroff (stdscr,COLOR_PAIR(1));
+            // }
+            // else if (map[i][j]=='L')
+            // {
+            //     wattron(stdscr,COLOR_PAIR(2));
+            //     mvwprintw(stdscr,i,j,"L");
+            //     wattroff (stdscr,COLOR_PAIR(2));
+            // }
             
         }
-        //printw("\n");
         mvwprintw(stdscr,i,j,"\n");
-
-       //printw("%s\n",map[i].c_str());
     }
     refresh();
 }
     
+
+void Engine::PrintPlayers(Potter & Potter, Malfoy & Malfoy, Diamond & Diamond)
+{    
+    wattron(stdscr,COLOR_PAIR(4));
+    mvwprintw(stdscr,Diamond.Gety(),Diamond.Getx(),"$");
+    wattroff (stdscr,COLOR_PAIR(4));
+            
+    if (Potter.Gety()== Malfoy.Gety() && Potter.Getx()==Malfoy.Getx())
+    {
+        wattron(stdscr,COLOR_PAIR(4));
+        mvwprintw(stdscr,Potter.Gety(),Potter.Getx(),"+");
+        wattroff (stdscr,COLOR_PAIR(4));
+    }
+    else
+    {
+        wattron(stdscr,COLOR_PAIR(1));
+        mvwprintw(stdscr,Potter.Gety(),Potter.Getx(),"M");
+        wattroff (stdscr,COLOR_PAIR(1));
+           
+        wattron(stdscr,COLOR_PAIR(2));
+        mvwprintw(stdscr,Malfoy.Gety(),Malfoy.Getx(),"L");
+        wattroff (stdscr,COLOR_PAIR(2));
+    }
+}
+
+
 int Engine::pick_y()
 {
     int y;

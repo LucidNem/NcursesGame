@@ -8,16 +8,11 @@ using namespace std;
 
 class Potter: public Player
 {
- //private:
-
  public:
     Potter( vector <string> &);
     ~Potter();
     int GetMove();
-    //pair <int,int> StartPositions();
-
 };
-
 #endif
 
 

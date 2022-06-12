@@ -1,17 +1,17 @@
 #include "Potter.h"
-
-#define ESCAPE 27
+#define KEY_ESC 27
+//#define KEY_ESC '\033'
 #define SPACE 32
 #define KEY_UP 65
 #define KEY_DOWN 66
 #define KEY_RIGHT 67
 #define KEY_LEFT 68
 
-
  Potter::Potter(vector <string> & map): Player(map)
  {
     
  }
+
 Potter::~Potter()
 {
 
@@ -43,7 +43,7 @@ int Potter::GetMove()
         case SPACE:
             check= StandStill();
             break;
-        case ESCAPE:
+        case KEY_ESC:
             ExitGame();
             check=true;
             break;
@@ -51,10 +51,5 @@ int Potter::GetMove()
         
     } while (check== false);
     
-    
-
-   
     return choice;
 }
-
-

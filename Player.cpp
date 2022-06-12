@@ -1,8 +1,9 @@
 #include "Player.h"
 #include <string>
 #include <cstring>
-#define ESCAPE 27
+//#define ESCAPE 27
 #define SPACE 32
+#define KEY_ESC '\033'
 
 Player::Player( vector <string>  xmap)
 {
@@ -162,5 +163,7 @@ bool Player::StandStill()
 
 bool Player::ExitGame()
 {
+    //exit(EXIT_SUCCESS);
+  
    return true;
 }
