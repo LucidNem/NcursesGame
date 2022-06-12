@@ -77,6 +77,17 @@ void Engine::StartGame( )
 
     endwin();
 
+     for (int i=0; i<map.size(); i++)
+    {
+        for (int j=0; j<map[i].size(); j++)
+        {
+            
+            cout << Malfoy.FindRouteMap[i][j] << " ";
+        }
+        
+        cout<< endl;
+    }
+
 }
 
 
@@ -119,16 +130,50 @@ const vector <string> & Engine::GetMap() const
 
 void Engine::PrintwMap()
 {
+    int j=0;
     for (int i=0; i< map.size(); i++)
     {
-        for (int j=0; j< strlen(map[1].c_str()) ; j++)
+        for ( j=0; j< strlen(map[1].c_str()) ; j++)
         {
-            printw("%c", charMap[i][j]);
+            if (map[i][j] == '.')
+            {
+               mvwprintw(stdscr,i,j," ");
+                //printw("%c", charMap[i][j]);
+            }
+            else if (map[i][j]== '*')
+            {
+                wattron(stdscr,COLOR_PAIR(3));
+                mvwprintw(stdscr,i,j," ");
+                wattroff (stdscr,COLOR_PAIR(3));
+
+            }
+            else if (map[i][j] == 'D')
+            {
+                wattron(stdscr,COLOR_PAIR(4));
+                mvwprintw(stdscr,i,j,"$");
+                wattroff (stdscr,COLOR_PAIR(4));
+
+            }
+            else if (map[i][j]== 'M')
+            {
+                wattron(stdscr,COLOR_PAIR(1));
+                mvwprintw(stdscr,i,j,"M");
+                wattroff (stdscr,COLOR_PAIR(1));
+            }
+            else if (map[i][j]=='L')
+            {
+                wattron(stdscr,COLOR_PAIR(2));
+                mvwprintw(stdscr,i,j,"L");
+                wattroff (stdscr,COLOR_PAIR(2));
+            }
+            
         }
-        printw("\n");
+        //printw("\n");
+        mvwprintw(stdscr,i,j,"\n");
 
        //printw("%s\n",map[i].c_str());
     }
+    refresh();
 }
     
 int Engine::pick_y()
