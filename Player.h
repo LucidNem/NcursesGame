@@ -45,7 +45,7 @@ protected:
     bool StandStill();
     bool ExitGame();
 
-    void UpdateMapFromEngine(vector <string>);
+    void UpdateMapFromEngine(vector <string> &);
 
 };
 

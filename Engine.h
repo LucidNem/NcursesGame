@@ -33,7 +33,8 @@ public:
     int pick_x();
 
     void SetMap(int,int, char);
-    bool CheckWin(Player &, Diamond &);
+    bool CheckWinPotter(Player &, Diamond &);
+    bool CheckWinMalfoy(Player &, Diamond &);
 
     void PrintwMap();
     bool CheckMove(int,int);

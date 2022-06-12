@@ -86,7 +86,7 @@ void Player::Setx(int x)
     this->x = x;
 }
 
-void Player::UpdateMapFromEngine(vector <string> xmap)
+void Player::UpdateMapFromEngine(vector <string> & xmap)
 {
     this->map=xmap;
 }

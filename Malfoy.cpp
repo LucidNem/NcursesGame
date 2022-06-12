@@ -46,6 +46,25 @@ Malfoy::~Malfoy()
 
 int Malfoy::GetMove()
 {
+
+     for (int i=0; i<map.size(); i++)
+    {
+        for (int j=0; j< strlen(map[1].c_str()); j++)
+        {
+            if ( map[i][j] == 'D')
+            {
+                Dy=i;
+                Dx=j;   
+                FindRouteMap[i][j] = 1;
+            }
+            else 
+            {
+                FindRouteMap[i][j]= 0;
+            }
+            
+        }
+    }
+    
     int choice=1;
     int counter=2;
     FindRoute(Dy,Dx);

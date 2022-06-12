@@ -47,9 +47,9 @@ void Engine::StartGame( )
     printw("\n\n\n\n WELCOME \n\n\n PRESS ANY KEY TO CONTINUE\n\n");
     refresh();
     getch();
-    clear();
-    PrintwMap();
-    refresh();
+    // clear();
+    // PrintwMap();
+    // refresh();
 
     bool check=false;
     do
@@ -57,41 +57,64 @@ void Engine::StartGame( )
         clear();
         PrintwMap();
         refresh();
+        
+    
         SetMap(Potter.Gety(),Potter.Getx(), ' ');
         SetMap(Malfoy.Gety(),Malfoy.Getx(), 'L');
         Potter.GetMove();
         SetMap(Potter.Gety(),Potter.Getx(), 'M');
-        check = CheckWin(Potter,Diamond);
+        check = CheckWinPotter(Potter,Diamond);
         if (check==true)
         {
             break;
         }
-
+        Malfoy.UpdateMapFromEngine(map);
         SetMap(Malfoy.Gety(),Malfoy.Getx(), ' ');
         Malfoy.GetMove();
         SetMap(Malfoy.Gety(),Malfoy.Getx(), 'L');
-        check = CheckWin(Malfoy,Diamond);
+        check = CheckWinMalfoy(Malfoy,Diamond);
 
+        if (check==false)
+        {
+            SetMap(Diamond.Gety(),Diamond.Getx(), ' ');
+            Diamond.ChangePos();
+            SetMap(Diamond.Gety(),Diamond.Getx(), 'D');
+        }
+
+        
     } while (check==false);
+
+    clear();
+    refresh();
+
+    if (CheckWinPotter(Potter,Diamond))
+    {
+        printw("\n\n\n\n\n\n\n\nCongratulations, You Won!!!");
+    }
+    else 
+    {
+        printw("\n\n\n\n\n\n\n\nSorry, You Lost!");
+    }
     
+    refresh();
+    getch();
 
     endwin();
 
-     for (int i=0; i<map.size(); i++)
-    {
-        for (int j=0; j<map[i].size(); j++)
-        {
-            
-            cout << Malfoy.FindRouteMap[i][j] << " ";
-        }
-        
-        cout<< endl;
-    }
 
 }
 
 
-bool Engine::CheckWin(Player & Player, Diamond &Diamond)
+bool Engine::CheckWinPotter(Player & Player, Diamond &Diamond)
+{
+    if ( Player.Gety() == Diamond.Gety()  &&  Player.Getx()==Diamond.Getx() )
+    {
+        return true;
+    }
+    return false;
+}
+
+bool Engine::CheckWinMalfoy(Player & Player, Diamond &Diamond)
 {
     if ( Player.Gety() == Diamond.Gety()  &&  Player.Getx()==Diamond.Getx() )
     {

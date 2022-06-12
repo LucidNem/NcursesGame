@@ -27,6 +27,7 @@ public:
     int pick_x();
 
     pair <int,int> StartPositions();
+    void ChangePos();
 
 };
 

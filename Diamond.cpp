@@ -62,6 +62,14 @@ pair <int,int> Diamond::StartPositions()
     return cords;
 }
 
+void Diamond::ChangePos()
+{
+    if ((rand() % 20) == (rand() % 20))
+    {
+        StartPositions();
+    }
+}
+
 
 int Diamond::pick_y()
 {
