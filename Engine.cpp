@@ -41,6 +41,13 @@ void Engine::StartGame( )
     SetMap(Malfoy.Gety(),Malfoy.Getx(), 'L');
 
     initscr();
+
+    curs_set(0);
+    start_color();
+    init_pair(1,COLOR_YELLOW,COLOR_BLACK);
+    init_pair(2,COLOR_GREEN,COLOR_BLACK);
+    init_pair(3,COLOR_WHITE,COLOR_WHITE);
+    init_pair(4,COLOR_BLUE,COLOR_BLACK);
     noecho();
     cbreak();
     printw("\n\n\n\n WELCOME \n\n\n PRESS ANY KEY TO CONTINUE\n\n");
@@ -69,6 +76,7 @@ void Engine::StartGame( )
         }
         Malfoy.UpdateMapFromEngine(map);
         SetMap(Malfoy.Gety(),Malfoy.Getx(), ' ');
+        SetMap(Potter.Gety(),Potter.Getx(), 'M');
         Malfoy.GetMove();
         SetMap(Malfoy.Gety(),Malfoy.Getx(), 'L');
         check = CheckWinMalfoy(Malfoy,Diamond);
